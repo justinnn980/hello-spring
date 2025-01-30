@@ -5,10 +5,16 @@ import hello.hello_spring.repository.MemberRepository;
 import hello.hello_spring.repository.MemoryMemberRepository;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service ///비즈니스 로직을 만든다.
 public class MemberService {
+
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) { ///외부에서 레퍼지토리 넣어주기
         this.memberRepository = memberRepository;
     }

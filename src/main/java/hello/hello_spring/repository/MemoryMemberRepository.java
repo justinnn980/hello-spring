@@ -8,16 +8,18 @@ import java.util.Map;
 import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
-
+/**
+ * 동시성 문제가 고려되어 있지 않음, 실무에서는 ConcurrentHashMap, AtomicLong 사용 고려
+ */
 @Repository /// 데이터를 저장한다.
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
-    private static long ssquence = 0L;
+    private static long sequence = 0L;
 
     @Override
     public Member save(Member member) {
-        member.setId(++ssquence);
+        member.setId(++sequence);
         store.put(member.getId(), member);
         return member;
     }

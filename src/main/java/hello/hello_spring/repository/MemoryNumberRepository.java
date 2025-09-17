@@ -45,4 +45,9 @@ public class MemoryNumberRepository implements NumberRepository {
     public List<Number> findAll() {
         return new ArrayList<>(store.values());
     }
+
+    public void clearStore() {
+        store.clear();
+        sequence = 0L;
+    }
 }

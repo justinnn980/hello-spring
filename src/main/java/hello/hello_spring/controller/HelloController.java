@@ -45,4 +45,31 @@ public class HelloController {
             this.name = name;
         }
     }
+
+    @GetMapping("getcount")
+    @ResponseBody ///응답 body부분에 데이터를 직접넣어주겠다.
+    public String getCount(@RequestParam("count") int count) {
+        return "getcount  "+count;
+    }
+
+    @GetMapping("get-count")
+    @ResponseBody ///데이터를 내놔라
+    /// 3. API 만들기
+    public Gc getCountApi(@RequestParam("count") int count) {
+        Gc gc = new Gc();
+        gc.setCount(count);
+        return gc; ///객체를 전달 : 객체가 오면 HttpMessageConverter 가 동작
+    }
+    /// 1. class 만들기
+    static class Gc{
+        private int count; ///2. 외부에서 사용하기 위해 getter setter (commend + n)
+
+        public int getCount() {
+            return count;
+        }
+
+        public void setCount(int count) {
+            this.count = count;
+        }
+    }
 }

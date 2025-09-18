@@ -6,11 +6,15 @@ import hello.hello_spring.repository.NumberRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class NumberService {
 
     private final NumberRepository numberRepository;
 
+    @Autowired
     public NumberService(NumberRepository numberRepository) {
         this.numberRepository = numberRepository;
     }

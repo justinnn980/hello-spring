@@ -3,7 +3,9 @@ package hello.hello_spring.repository;
 import hello.hello_spring.domain.Number;
 import java.time.LocalDateTime;
 import java.util.*;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class MemoryNumberRepository implements NumberRepository {
 
     private static final Map<Long, Number> store = new HashMap<>();

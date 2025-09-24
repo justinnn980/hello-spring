@@ -44,6 +44,11 @@ public class NumberService {
         return numberRepository.findByCount(count);
     }
 
+    // 전체 조회
+    public List<Number> findNumbers() {
+        return numberRepository.findAll();
+    }
+
     public void clearAll() {
         numberRepository.clearStore();
     }

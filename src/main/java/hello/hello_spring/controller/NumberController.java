@@ -3,6 +3,7 @@ package hello.hello_spring.controller;
 import hello.hello_spring.domain.Number;
 import hello.hello_spring.service.NumberService;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,12 @@ public class NumberController {
     @GetMapping("/count/{count}")
     public Optional<Number> getByCount(@PathVariable Long count) {
         return numberService.findByCount(count);
+    }
+
+    // 전체 Number 조회
+    @GetMapping("/numberAll")
+    public List<Number> getAll() {
+        return numberService.findNumbers();
     }
 
     @DeleteMapping("/deleteall")

@@ -44,6 +44,12 @@ public class MemoryNumberRepository implements NumberRepository {
     }
 
     @Override
+    public Optional<Number> findByTotal() {
+        return store.values().stream()
+            .max(Comparator.comparingLong(Number::getCount));
+    }
+
+    @Override
     public List<Number> findAll() {
         return new ArrayList<>(store.values());
     }

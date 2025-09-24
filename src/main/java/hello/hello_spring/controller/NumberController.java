@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -41,6 +42,15 @@ public class NumberController {
     public Optional<Number> getByCount(@PathVariable Long count) {
         return numberService.findByCount(count);
     }
+
+    @GetMapping("/total")
+    public ResponseEntity<Number> getTotal() {
+        Optional<Number> maxCountNumber = numberService.findByTotal();
+        return maxCountNumber
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.noContent().build());
+    }
+
 
     // 전체 Number 조회
     @GetMapping("/numberAll")

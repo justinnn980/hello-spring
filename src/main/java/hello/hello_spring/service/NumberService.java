@@ -44,6 +44,10 @@ public class NumberService {
         return numberRepository.findByCount(count);
     }
 
+    public Optional<Number> findByTotal() {
+        return numberRepository.findByTotal();
+    }
+
     // 전체 조회
     public List<Number> findNumbers() {
         return numberRepository.findAll();

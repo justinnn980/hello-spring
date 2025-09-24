@@ -7,6 +7,7 @@ public class Number {
     private long count;       // count 값
     private LocalDateTime createdAt; // TIMESTAMP 매핑
 
+
     public long getId() {
         return id;
     }

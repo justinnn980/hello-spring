@@ -24,10 +24,11 @@ public class NumberController {
     // 새로운 Number 추가 (count 자동 증가)
     @PostMapping
     public Number addNumber() {
-        Number number = new Number();
+        Number number = new Number(); // 일반 객체
         numberService.add(number);
-        return number; // 저장된 number 객체를 JSON으로 반환
+        return number;
     }
+
 
     // id로 조회
     @GetMapping("/{id}")

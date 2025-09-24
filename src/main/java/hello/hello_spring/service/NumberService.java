@@ -43,4 +43,8 @@ public class NumberService {
     public Optional<Number> findByCount(Long count) {
         return numberRepository.findByCount(count);
     }
+
+    public void clearAll() {
+        numberRepository.clearStore();
+    }
 }

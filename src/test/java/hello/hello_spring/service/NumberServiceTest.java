@@ -67,4 +67,25 @@ class NumberServiceTest {
         assertThat(result).isPresent();
         assertThat(result.get().getCount()).isEqualTo(1L);
     }
+
+    @Test
+    void clearStore전체삭제(){
+        // 1. 데이터 추가
+        Number number1 = new Number();
+        Number number2 = new Number();
+        numberService.add(number1);
+        numberService.add(number2);
+
+        // 2. 삭제 전 count 확인
+        assertThat(numberService.count()).isEqualTo(2L);
+
+        // 3. 전체 삭제
+        numberService.clearAll();
+
+        // 4. 삭제 후 count는 0
+        assertThat(numberService.count()).isEqualTo(0L);
+
+        // 5. findAll()도 빈 리스트여야 함
+        assertThat(repository.findAll()).isEmpty();
+    }
 }

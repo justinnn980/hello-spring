@@ -11,4 +11,6 @@ public interface NumberRepository {
     Optional<Number> findByCount(Long count);
     Optional<Number> findByCreatedAt(LocalDateTime createdAt);
     List<Number> findAll();
+    // 전체 삭제용 메서드 추가
+    void clearStore();
 }

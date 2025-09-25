@@ -1,0 +1,6 @@
+CREATE TABLE records
+(
+    id         INT AUTO_INCREMENT PRIMARY KEY,
+    count      INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

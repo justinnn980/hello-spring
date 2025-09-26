@@ -2,12 +2,11 @@
 FROM gradle:8-jdk17 AS build
 WORKDIR /app
 
-# Gradle 캐시 활용을 위해 build.gradle 먼저 복사
+# Gradle 캐시 활용을 위해 build.gradle, settings.gradle 먼저 복사
 COPY build.gradle settings.gradle ./
-# 필요하면 gradle/wrapper도 복사
 COPY gradle/ gradle/
 
-# 의존성만 먼저 다운로드
+# 의존성만 먼저 다운로드 (테스트 제외)
 RUN gradle build -x test --no-daemon || true
 
 # 전체 소스 복사 후 빌드

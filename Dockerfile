@@ -8,7 +8,7 @@ ARG JAR_FILE=build/libs/*.jar
 WORKDIR /app
 
 # 빌드된 JAR 파일을 app.jar라는 이름으로 컨테이너에 복사합니다.
-COPY ${JAR_FILE} app.jar/
+COPY ${JAR_FILE} app.jar
 
 # 애플리케이션이 사용할 포트를 노출합니다.
 EXPOSE 8083

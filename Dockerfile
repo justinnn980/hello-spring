@@ -9,7 +9,7 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar app.jar
 
-# Render는 PORT 환경변수를 자동으로 설정해줌
+# Render는 PORT env를 자동으로 넣어줌
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -1,22 +1,15 @@
-# 1️⃣ Build Stage
-FROM gradle:8-jdk17 AS build
+# 1단계: 빌드
+FROM gradle:8.7-jdk17 AS builder
 WORKDIR /app
-
-# Gradle 캐시 활용
-COPY build.gradle settings.gradle ./
-COPY gradle/ gradle/
-RUN gradle build -x test --no-daemon || true
-
-# 전체 소스 복사 후 빌드
 COPY . .
-RUN gradle build -x test --no-daemon
+RUN gradle bootJar --no-daemon
 
-# 2️⃣ Package Stage
-FROM eclipse-temurin:17-jdk-jammy
+# 2단계: 실행
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
+COPY --from=builder /app/build/libs/*.jar app.jar
 
-# Build stage에서 생성된 JAR 복사
-COPY --from=build /app/build/libs/*.jar app.jar
+# Render는 PORT 환경변수를 자동으로 설정해줌
+EXPOSE 8080
 
-# 실행
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

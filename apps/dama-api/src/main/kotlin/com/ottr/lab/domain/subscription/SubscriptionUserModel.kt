@@ -18,7 +18,7 @@ import java.time.LocalDate
  *
  * @property userId 사용자 ID
  * @property subscription 구독 서비스 정보
- * @property billingCycle 결제 주기 (monthly, yearly)
+ * @property billingCycle 결제 주기 (MONTHLY, YEARLY)
  * @property price 구독 가격
  * @property paymentDay 결제일 (1~31)
  * @property startedAt 구독 시작일

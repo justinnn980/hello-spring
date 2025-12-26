@@ -17,6 +17,10 @@ class UserRepositoryImpl(
         return userJpaRepository.findByIdOrNull(id)
     }
 
+    override fun findByEmail(email: String): UserModel? {
+        return userJpaRepository.findByEmail(email)
+    }
+
     override fun existsByEmail(email: String): Boolean {
         return userJpaRepository.existsByEmail(email)
     }

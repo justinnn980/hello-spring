@@ -210,7 +210,7 @@ class SubscriptionService(
      */
     private fun calculateMonthlyCost(subscriptions: List<SubscriptionUserModel>): Int {
         return subscriptions
-            .filter { it.billingCycle == BillingCycle.MONTHLY }
+            .filter { it.billingCycle == BillingCycle.monthly }
             .sumOf { it.price ?: 0 }
     }
 

@@ -6,8 +6,11 @@ import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import com.ottr.lab.support.error.CoreException
 import com.ottr.lab.support.error.ErrorType
 import org.slf4j.LoggerFactory
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
+import org.springframework.validation.BindException
+import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.MissingServletRequestParameterException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
@@ -102,6 +105,29 @@ class ApiControllerAdvice {
     @ExceptionHandler
     fun handleNotFound(e: NoResourceFoundException): ResponseEntity<ApiResponse<*>> {
         return failureResponse(errorType = ErrorType.NOT_FOUND)
+    }
+
+    @ExceptionHandler
+    fun handleValidationException(e: MethodArgumentNotValidException): ResponseEntity<ApiResponse<*>> {
+        val errors = e.bindingResult.fieldErrors.joinToString(", ") { "${it.field}: ${it.defaultMessage}" }
+        return failureResponse(errorType = ErrorType.BAD_REQUEST, errorMessage = errors)
+    }
+
+    @ExceptionHandler
+    fun handleValidationException(e: BindException): ResponseEntity<ApiResponse<*>> {
+        val errors = e.bindingResult.fieldErrors.joinToString(", ") { "${it.field}: ${it.defaultMessage}" }
+        return failureResponse(errorType = ErrorType.BAD_REQUEST, errorMessage = errors)
+    }
+
+    @ExceptionHandler
+    fun handleDataIntegrityViolation(e: DataIntegrityViolationException): ResponseEntity<ApiResponse<*>> {
+        val message = when {
+            e.message?.contains("duplicate key") == true || e.message?.contains("unique constraint") == true -> {
+                "이미 존재하는 데이터입니다."
+            }
+            else -> "데이터 무결성 제약 조건 위반입니다."
+        }
+        return failureResponse(errorType = ErrorType.CONFLICT, errorMessage = message)
     }
 
     @ExceptionHandler

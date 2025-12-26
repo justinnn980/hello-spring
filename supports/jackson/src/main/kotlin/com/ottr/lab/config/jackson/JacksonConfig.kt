@@ -3,6 +3,7 @@ package com.ottr.lab.config.jackson
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.SerializationFeature
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer
 import org.springframework.context.annotation.Bean
@@ -17,6 +18,9 @@ class JacksonConfig {
     fun jacksonCustomizer() = Jackson2ObjectMapperBuilderCustomizer { builder ->
         // Classpath 내의 모든 Jackson 모듈 자동 등록
         builder.findModulesViaServiceLoader(true)
+
+        // Naming Strategy (snake_case)
+        builder.propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
 
         // Serialization Features
         builder.serializationInclusion(JsonInclude.Include.NON_NULL)

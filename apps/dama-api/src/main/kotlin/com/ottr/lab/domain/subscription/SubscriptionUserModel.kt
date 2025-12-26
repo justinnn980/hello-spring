@@ -5,8 +5,6 @@ import com.ottr.lab.support.error.CoreException
 import com.ottr.lab.support.error.ErrorType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
-import jakarta.persistence.EnumType
-import jakarta.persistence.Enumerated
 import jakarta.persistence.FetchType
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
@@ -46,7 +44,6 @@ class SubscriptionUserModel(
     var subscription: SubscriptionModel = subscription
         protected set
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "billing_cycle", length = 20)
     var billingCycle: BillingCycle? = billingCycle
         protected set

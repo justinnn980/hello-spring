@@ -1,12 +1,16 @@
 package com.ottr.lab.domain.subscription
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 /**
  * 구독 결제 주기를 나타내는 Enum
  *
- * @property monthly 월간 구독
- * @property YEARLY 연간 구독
+ * @property value DB 저장 값 (소문자)
  */
-enum class BillingCycle {
-    MONTHLY,
-    YEARLY,
+enum class BillingCycle(val value: String) {
+    @JsonProperty("monthly")
+    MONTHLY("monthly"),
+
+    @JsonProperty("yearly")
+    YEARLY("yearly"),
 }

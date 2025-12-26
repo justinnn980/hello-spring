@@ -47,11 +47,11 @@ interface SubscriptionV1ApiSpec {
 
     @Operation(
         summary = "구독 랭킹 조회",
-        description = "서비스별 구독자 수 랭킹을 조회합니다. age 파라미터로 연령대별 필터링이 가능합니다.",
+        description = "서비스별 구독자 수 랭킹을 조회합니다. age path 파라미터로 연령대별 필터링이 가능합니다. 전체 조회 시 'all'을 전달합니다.",
     )
     fun getSubscriptionRanking(
-        @Schema(description = "연령대 필터 (선택, 10/20/30/...)", example = "20")
-        age: Int?,
+        @Schema(description = "연령대 필터 (10/20/30/... 또는 전체 조회 시 'all')", example = "20")
+        age: String,
     ): ApiResponse<List<SubscriptionV1Dto.SubscriptionRankingResponse>>
 
     @Operation(

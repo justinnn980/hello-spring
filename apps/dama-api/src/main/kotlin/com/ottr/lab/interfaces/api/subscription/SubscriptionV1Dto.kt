@@ -199,5 +199,8 @@ class SubscriptionV1Dto {
 
         @JsonProperty("subscriber_count")
         val subscriberCount: Long,
+
+        @JsonProperty("age")
+        val age: Int?,
     )
 }

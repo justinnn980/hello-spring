@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
@@ -130,20 +129,23 @@ class SubscriptionV1Controller(
     /**
      * 구독 랭킹을 조회합니다.
      *
-     * GET /api/subscriptions/ranking?age={age}
+     * GET /api/subscriptions/ranking/{age}
      *
-     * @param age 연령대 필터 (선택)
+     * @param age 연령대 필터 (선택, "all"이면 전체 조회)
      * @return 서비스별 구독자 수 랭킹
      */
-    @GetMapping("/ranking")
+    @GetMapping("/ranking/{age}")
     override fun getSubscriptionRanking(
-        @RequestParam(name = "age", required = false) age: Int?,
+        @PathVariable age: String,
     ): ApiResponse<List<SubscriptionV1Dto.SubscriptionRankingResponse>> {
-        return subscriptionService.getSubscriptionRanking(age)
+        val ageFilter = if (age == "all") null else age.toIntOrNull()
+
+        return subscriptionService.getSubscriptionRanking(ageFilter)
             .map {
                 SubscriptionV1Dto.SubscriptionRankingResponse(
                     serviceName = it.serviceName,
                     subscriberCount = it.subscriberCount,
+                    age = ageFilter,
                 )
             }
             .let { ApiResponse.success(it) }

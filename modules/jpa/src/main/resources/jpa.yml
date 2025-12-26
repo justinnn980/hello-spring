@@ -37,7 +37,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
 
 datasource:
   postgres-jpa:
@@ -67,6 +67,8 @@ spring.config.activate.on-profile: dev
 spring:
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update
 
 datasource:
   postgres-jpa:

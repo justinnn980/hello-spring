@@ -11,8 +11,12 @@ dependencies {
 
     // web
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${project.properties["springDocOpenApiVersion"]}")
+
+    // security (BCrypt for password hashing)
+    implementation("org.springframework.security:spring-security-crypto")
 
     // querydsl
     kapt("com.querydsl:querydsl-apt::jakarta")

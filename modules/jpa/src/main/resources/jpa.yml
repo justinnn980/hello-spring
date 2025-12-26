@@ -37,14 +37,14 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
 
 datasource:
   postgres-jpa:
     main:
-      jdbc-url: jdbc:postgresql://localhost:5432/ottr
-      username: application
-      password: application
+      jdbc-url: jdbc:postgresql://dpg-d577ihbe5dus73d67sj0-a.oregon-postgres.render.com/dama_t5yj
+      username: dama_t5yj_user
+      password: uIhFAEuO5pUQF0MqMYu7MD0eDrvifkih
 
 ---
 spring.config.activate.on-profile: test
@@ -56,7 +56,7 @@ spring:
       ddl-auto: create
 
 datasource:
-  mysql-jpa:
+  postgres-jpa:
     main:
       maximum-pool-size: 10
       minimum-idle: 5
@@ -71,9 +71,9 @@ spring:
 datasource:
   postgres-jpa:
     main:
-      jdbc-url: jdbc:postgresql://localhost:5432/ottr
-      username: application
-      password: application
+      jdbc-url: jdbc:postgresql://dpg-d577ihbe5dus73d67sj0-a.oregon-postgres.render.com/dama_t5yj
+      username: dama_t5yj_user
+      password: uIhFAEuO5pUQF0MqMYu7MD0eDrvifkih
 
 ---
 spring.config.activate.on-profile: qa
@@ -81,9 +81,9 @@ spring.config.activate.on-profile: qa
 datasource:
   postgres-jpa:
     main:
-      jdbc-url: jdbc:postgresql://localhost:5432/ottr
-      username: application
-      password: application
+      jdbc-url: jdbc:postgresql://dpg-d577ihbe5dus73d67sj0-a.oregon-postgres.render.com/dama_t5yj
+      username: dama_t5yj_user
+      password: uIhFAEuO5pUQF0MqMYu7MD0eDrvifkih
 
 ---
 spring.config.activate.on-profile: prd
@@ -91,6 +91,6 @@ spring.config.activate.on-profile: prd
 datasource:
   postgres-jpa:
     main:
-      jdbc-url: jdbc:postgresql://localhost:5432/ottr
-      username: application
-      password: application
+      jdbc-url: jdbc:postgresql://dpg-d577ihbe5dus73d67sj0-a.oregon-postgres.render.com/dama_t5yj
+      username: dama_t5yj_user
+      password: uIhFAEuO5pUQF0MqMYu7MD0eDrvifkih

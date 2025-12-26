@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Primary
 @Configuration
 class DataSourceConfig {
     @Bean
-    @ConfigurationProperties(prefix = "datasource.postgresql-jpa.main")
+    @ConfigurationProperties(prefix = "datasource.postgres-jpa.main")
     fun postgresqlMainHikariConfig(): HikariConfig =
         HikariConfig()
 

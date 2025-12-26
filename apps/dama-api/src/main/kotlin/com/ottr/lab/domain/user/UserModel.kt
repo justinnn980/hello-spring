@@ -7,6 +7,7 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import java.time.LocalDate
 
 @Entity
 @Table(name = "users")
@@ -14,6 +15,8 @@ class UserModel(
     email: String,
     password: String,
     nickname: String? = null,
+    birth: LocalDate,
+    age: Int,
 ) : BaseEntity() {
     @Column(name = "email", nullable = false, unique = true, length = 255)
     var email: String = email
@@ -25,6 +28,14 @@ class UserModel(
 
     @Column(name = "nickname", length = 100)
     var nickname: String? = nickname
+        protected set
+
+    @Column(name = "birth", nullable = false)
+    var birth: LocalDate = birth
+        protected set
+
+    @Column(name = "age", nullable = false)
+    var age: Int = age
         protected set
 
     init {

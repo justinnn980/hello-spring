@@ -3,7 +3,9 @@ package com.ottr.lab.interfaces.api.user
 import com.ottr.lab.domain.user.UserModel
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.Pattern
 import jakarta.validation.constraints.Size
+import java.time.LocalDate
 import java.time.ZonedDateTime
 
 class UserV1Dto {
@@ -19,6 +21,13 @@ class UserV1Dto {
 
         @field:Size(max = 100, message = "닉네임은 100자를 초과할 수 없습니다.")
         val nickname: String? = null,
+
+        @field:NotBlank(message = "생년월일은 필수입니다.")
+        @field:Pattern(
+            regexp = "^(19|20)\\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\\d|3[01])$",
+            message = "생년월일은 YYYYMMDD 형식이어야 합니다. (예: 19941115)",
+        )
+        val birth: String,
     )
 
     data class UpdateUserRequest(
@@ -30,6 +39,8 @@ class UserV1Dto {
         val id: Long,
         val email: String,
         val nickname: String?,
+        val birth: LocalDate,
+        val age: Int,
         val createdAt: ZonedDateTime,
         val updatedAt: ZonedDateTime,
     ) {
@@ -39,6 +50,8 @@ class UserV1Dto {
                     id = user.id,
                     email = user.email,
                     nickname = user.nickname,
+                    birth = user.birth,
+                    age = user.age,
                     createdAt = user.createdAt,
                     updatedAt = user.updatedAt,
                 )

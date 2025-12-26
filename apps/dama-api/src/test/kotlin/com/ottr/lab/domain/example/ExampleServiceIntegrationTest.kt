@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest
 class ExampleServiceIntegrationTest @Autowired constructor(
     private val exampleService: ExampleService,
     private val exampleJpaRepository: ExampleJpaRepository,
-    private val databaseCleanUp: DatabaseCleanUp,
+    private val databaseCleanUp: com.ottr.lab.utils.DatabaseCleanUp,
 ) {
     @AfterEach
     fun tearDown() {

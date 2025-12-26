@@ -70,8 +70,6 @@ subprojects {
         implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
         // Test
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-        // testcontainers:mysql 이 jdbc 사용함
-        testRuntimeOnly("com.mysql:mysql-connector-j")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
         testImplementation("com.ninja-squad:springmockk:${project.properties["springMockkVersion"]}")
@@ -79,6 +77,7 @@ subprojects {
         testImplementation("org.mockito.kotlin:mockito-kotlin:${project.properties["mockitoKotlinVersion"]}")
         testImplementation("org.instancio:instancio-junit:${project.properties["instancioJUnitVersion"]}")
         // Testcontainers
+        testImplementation("org.testcontainers:postgresql")
         testImplementation("org.springframework.boot:spring-boot-testcontainers")
         testImplementation("org.testcontainers:testcontainers")
         testImplementation("org.testcontainers:junit-jupiter")

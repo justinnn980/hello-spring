@@ -11,7 +11,7 @@ import jakarta.persistence.Table
 class ExampleModel(
     name: String,
     description: String,
-) : BaseEntity() {
+) : com.ottr.lab.domain.BaseEntity() {
     var name: String = name
         protected set
 

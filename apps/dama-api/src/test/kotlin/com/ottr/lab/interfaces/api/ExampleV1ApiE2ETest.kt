@@ -22,7 +22,7 @@ import org.springframework.http.HttpStatus
 class ExampleV1ApiE2ETest @Autowired constructor(
     private val testRestTemplate: TestRestTemplate,
     private val exampleJpaRepository: ExampleJpaRepository,
-    private val databaseCleanUp: DatabaseCleanUp,
+    private val databaseCleanUp: com.ottr.lab.utils.DatabaseCleanUp,
 ) {
     companion object {
         private val ENDPOINT_GET: (Long) -> String = { id: Long -> "/api/v1/examples/$id" }

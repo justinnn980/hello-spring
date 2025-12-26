@@ -10,10 +10,8 @@ dependencies {
     api("com.querydsl:querydsl-jpa::jakarta")
     kapt("com.querydsl:querydsl-apt::jakarta")
     // jdbc-mysql
-    runtimeOnly("com.mysql:mysql-connector-j")
-
-    testImplementation("org.testcontainers:mysql")
-
+    runtimeOnly("org.postgresql:postgresql")
+    testImplementation("org.testcontainers:postgresql")
     testFixturesImplementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    testFixturesImplementation("org.testcontainers:mysql")
+    testFixturesImplementation("org.testcontainers:postgresql")
 }

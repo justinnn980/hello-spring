@@ -16,18 +16,25 @@ class DatabaseCleanUp(
 
     override fun afterPropertiesSet() {
         entityManager.metamodel.entities
-            .filter { entity -> entity.javaType.getAnnotation(Entity::class.java) != null }
-            .map { entity -> entity.javaType.getAnnotation(Table::class.java).name }
+            .filter { entity -> entity.javaType.isAnnotationPresent(Entity::class.java) }
+            .mapNotNull { entity ->
+                val tableAnnotation = entity.javaType.getAnnotation(Table::class.java)
+                val name = tableAnnotation?.name
+                when {
+                    !name.isNullOrBlank() -> name
+                    else -> entity.name // 필요하면 entity.javaType.simpleName.lowercase() 등으로 맞춰도 됨
+                }
+            }
             .forEach { tableNames.add(it) }
     }
 
     @Transactional
     fun truncateAllTables() {
         entityManager.flush()
-        entityManager.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate()
-        tableNames.forEach { table ->
-            entityManager.createNativeQuery("TRUNCATE TABLE `$table`").executeUpdate()
-        }
-        entityManager.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate()
+        if (tableNames.isEmpty()) return
+        val truncateSql = tableNames.joinToString(", ") { it }
+        entityManager
+            .createNativeQuery("TRUNCATE TABLE $truncateSql RESTART IDENTITY CASCADE")
+            .executeUpdate()
     }
 }

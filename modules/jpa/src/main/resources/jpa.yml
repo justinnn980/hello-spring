@@ -12,13 +12,13 @@ spring:
         jdbc.time_zone: UTC
 
 datasource:
-  mysql-jpa:
+  postgres-jpa:
     main:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}
-      username: ${MYSQL_USER}
-      password: "${MYSQL_PWD}"
-      pool-name: mysql-main-pool
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+      username: ${POSTGRES_USER}
+      password: "${POSTGRES_PWD}"
+      pool-name: postgres-main-pool
       maximum-pool-size: 40
       minimum-idle: 30
       connection-timeout: 3000 # 커넥션 획득 대기시간(ms) ( default: 3000 = 3sec )
@@ -40,9 +40,9 @@ spring:
       ddl-auto: create
 
 datasource:
-  mysql-jpa:
+  postgres-jpa:
     main:
-      jdbc-url: jdbc:mysql://localhost:3306/ottr
+      jdbc-url: jdbc:postgresql://localhost:5432/ottr
       username: application
       password: application
 
@@ -69,9 +69,9 @@ spring:
     show-sql: true
 
 datasource:
-  mysql-jpa:
+  postgres-jpa:
     main:
-      jdbc-url: jdbc:mysql://localhost:3306/ottr
+      jdbc-url: jdbc:postgresql://localhost:5432/ottr
       username: application
       password: application
 
@@ -79,9 +79,9 @@ datasource:
 spring.config.activate.on-profile: qa
 
 datasource:
-  mysql-jpa:
+  postgres-jpa:
     main:
-      jdbc-url: jdbc:mysql://localhost:3306/ottr
+      jdbc-url: jdbc:postgresql://localhost:5432/ottr
       username: application
       password: application
 
@@ -89,8 +89,8 @@ datasource:
 spring.config.activate.on-profile: prd
 
 datasource:
-  mysql-jpa:
+  postgres-jpa:
     main:
-      jdbc-url: jdbc:mysql://localhost:3306/ottr
+      jdbc-url: jdbc:postgresql://localhost:5432/ottr
       username: application
       password: application

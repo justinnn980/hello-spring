@@ -14,6 +14,8 @@ class UserModel(
     email: String,
     password: String,
     nickname: String? = null,
+    birth: String? = null,
+    age: Int? = null,
 ) : BaseEntity() {
     @Column(name = "email", nullable = false, unique = true, length = 255)
     var email: String = email
@@ -25,6 +27,14 @@ class UserModel(
 
     @Column(name = "nickname", length = 100)
     var nickname: String? = nickname
+        protected set
+
+    @Column(name = "birth")
+    var birth: String? = birth
+        protected set
+
+    @Column(name = "age")
+    var age: Int? = age
         protected set
 
     init {

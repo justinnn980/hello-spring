@@ -19,6 +19,8 @@ class UserV1Dto {
 
         @field:Size(max = 100, message = "닉네임은 100자를 초과할 수 없습니다.")
         val nickname: String? = null,
+
+        val birth: String? = null,
     )
 
     data class UpdateUserRequest(
@@ -30,6 +32,8 @@ class UserV1Dto {
         val id: Long,
         val email: String,
         val nickname: String?,
+        val birth: String?,
+        val age: Int?,
         val createdAt: ZonedDateTime,
         val updatedAt: ZonedDateTime,
     ) {
@@ -39,6 +43,8 @@ class UserV1Dto {
                     id = user.id,
                     email = user.email,
                     nickname = user.nickname,
+                    birth = user.birth,
+                    age = user.age,
                     createdAt = user.createdAt,
                     updatedAt = user.updatedAt,
                 )

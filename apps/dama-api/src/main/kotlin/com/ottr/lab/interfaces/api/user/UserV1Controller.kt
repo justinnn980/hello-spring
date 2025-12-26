@@ -27,6 +27,7 @@ class UserV1Controller(
             email = request.email,
             password = request.password,
             nickname = request.nickname,
+            birth = request.birth,
         )
             .let { UserV1Dto.UserResponse.from(it) }
             .let { ApiResponse.success(it) }

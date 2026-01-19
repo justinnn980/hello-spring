@@ -25,9 +25,12 @@ public class NumberController {
     // 새로운 Number 추가 (count 자동 증가)
     @PostMapping
     public Number addNumber() {
-        Number number = new Number(); // 일반 객체
-        numberService.add(number);
-        return number;
+        return numberService.add();
+    }
+
+    @PostMapping("/minus")
+    public Number minusNumber() {
+        return numberService.minus();
     }
 
 

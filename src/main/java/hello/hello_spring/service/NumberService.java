@@ -19,14 +19,26 @@ public class NumberService {
         this.numberRepository = numberRepository;
     }
 
-    public Long add(Number number) {
-        long nextCount = count() + 1;
-        number.setCount(nextCount);
+    public Number add() {
+        long current = count();
+
+        Number number = new Number();
+        number.setCount(current + 1);
         number.setCreatedAt(LocalDateTime.now());
 
-        Number saved = numberRepository.save(number);
-        return saved.getId();
+        return numberRepository.save(number);
     }
+
+    public Number minus() {
+        long current = count();
+
+        Number number = new Number();
+        number.setCount(current - 1);
+        number.setCreatedAt(LocalDateTime.now());
+
+        return numberRepository.save(number);
+    }
+
 
     public Long count() {
         List<Number> numbers = numberRepository.findAll();
@@ -35,6 +47,7 @@ public class NumberService {
         }
         return numbers.get(numbers.size() - 1).getCount();
     }
+
 
     public Optional<Number> findById(Long id) {
         return numberRepository.findById(id);
